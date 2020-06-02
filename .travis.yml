@@ -2,7 +2,6 @@ langauge: ruby
 rbenv:
 - 2.5.3
 addons:
-  postgresql: 9.6
   chrome: stable
 dist: xenial
 before_install:
@@ -10,11 +9,8 @@ before_install:
 - gem install bundler
 script:
 - yarn
-- bundle exec rails db:{create,migrate} RAILS_ENV=test
-- bundle exec rspec
 deploy:
   provider: heroku
   api_key:
     secure: dWg9g9n0scEuHVB1hs91gej+NRw71whwBI66gde/gA9j0tEHvpMCDM7IdYIVayFUyWu9r/fnG6i2bVZjjySkCS7+v6LCsoJuCaimQSovv9S486ZZdcL64FGLG3o54qsjBJv+xpfAdlPAMkjnqNDHRz1G7781WPyb3PuCBausIr538ab63sKaTfzLUODTnow5AfVMZ+RLitWYR7aMLh4NM2QKLs0L505KCEFJdhoWbyHDOSO5HVgA36w9pW3YZ/3a83JI5YrYPAOrFfhVH60PwXtg0HoGzTwaPBGN+xh3XrSylXeJGONM5i5vpDhsf5pB8zQg2vVZhpvjtVnScnjCcfiAeEBqj9i5zoyIdtudfjmNVX2TlObRVF1UyVyQ4yJb0tO/dq77sb09NKvFJe+2sVFc3+dSzmlHpDT5PBztA8yrdUZASIih7bo5vduK0DL+8zT/Q27ut8OHqadJP6biORkxWHf5aS1wzOPDrKvCiIepIu5GCJYcqG3OX1XbulRnTpO6h7ez+SxQrDPoloZPEzqd9eHs1vsbNPdQ1w9SYpxr2FLYUZyW7inH+tYa3EPS+Cn18jTYhNPTMGfZ4lPJEij90X/PXqygZzhQ2/tbJHDwc8hztJmvHl5eQT3+qDKcJAPuiZ4MZIXCDz+Ne6ajeaYkXwEZWhnMbekFDsa3GEY=
   app: knead-recipes-microservice
-  run: rails db:migrate
