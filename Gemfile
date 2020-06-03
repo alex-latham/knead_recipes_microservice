@@ -7,7 +7,6 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem 'sinatra'
 gem 'faraday'
 gem 'fast_jsonapi'
-gem 'rake'
 gem 'pry'
 gem 'shotgun'
 gem 'rack-test'

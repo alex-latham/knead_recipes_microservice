@@ -34,5 +34,4 @@ class RecipesControllerTest < Minitest::Test
     end
     assert_equal [1,2,3], ids
   end
-
 end

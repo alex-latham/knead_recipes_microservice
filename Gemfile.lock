@@ -1,6 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (6.0.3.1)
+      activesupport (= 6.0.3.1)
+    activerecord (6.0.3.1)
+      activemodel (= 6.0.3.1)
+      activesupport (= 6.0.3.1)
     activesupport (6.0.3.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -21,6 +26,7 @@ GEM
     multipart-post (2.1.1)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -38,6 +44,9 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
+    sinatra-activerecord (2.0.18)
+      activerecord (>= 4.1)
+      sinatra (>= 1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
     tzinfo (1.2.7)
@@ -51,12 +60,14 @@ DEPENDENCIES
   dotenv
   faraday
   fast_jsonapi
+  pg
   pry
   rack
   rack-test
   rake
   shotgun
   sinatra
+  sinatra-activerecord
 
 BUNDLED WITH
    2.1.4
