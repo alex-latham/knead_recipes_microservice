@@ -1,5 +1,6 @@
 require './app/services/spoonacular_service'
 require './app/serializers/recipe_serializer'
+require 'sinatra'
 
 class RecipesController < Sinatra::Base
 
