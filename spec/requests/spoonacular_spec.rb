@@ -11,7 +11,7 @@ class RecipesControllerTest < Minitest::Test
   def test_it_returns_12_recipes
     request = get "/recipes/complexSearch"
     response = JSON.parse(request.body, symbolize_names: true)
-    assert_equal 12, response[:results].size
+    assert_equal 12, response.size
   end
 
   def test_it_returns_a_specific_recipe
@@ -19,19 +19,18 @@ class RecipesControllerTest < Minitest::Test
     response = JSON.parse(request.body, symbolize_names: true)
     assert_equal 1, response[:id]
     assert response[:title]
-    assert response[:readyInMinutes]
-    assert response[:extendedIngredients]
-    assert response[:analyzedInstructions]
+    assert response[:time]
+    assert response[:ingredients]
+    assert response[:instructions]
   end
 
   def test_it_returns_multiple_recipes_by_id
-    request = get "/recipes?ids=1,2,3"
+    request = get "/recipes?ids=1,2,5"
     response = JSON.parse(request.body, symbolize_names: true)
     assert_equal 3, response.size
-
     ids = response.reduce([]) do |acc, recipe|
       acc << recipe[:id]
     end
-    assert_equal [1,2,3], ids
+    assert_equal [1,2,5], ids
   end
 end
