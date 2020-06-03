@@ -1,10 +1,11 @@
 require './app/services/spoonacular_service'
-require './app/serializers/recipe_serializer'
+require 'sinatra'
 
 class RecipesController < Sinatra::Base
 
   get '/recipes/complexSearch' do
     SpoonacularService.new.complex_search(params).to_json
+    # RecipeSerializer.new(recipes)
   end
 
   get "/recipe/:recipe_id" do

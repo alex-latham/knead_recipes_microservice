@@ -1,0 +1,37 @@
+require './app/controllers/recipes_controller'
+require './spec/spec_helper'
+
+class RecipesControllerTest < Minitest::Test
+  include Rack::Test::Methods
+
+  def app
+    RecipesController
+  end
+
+  def test_it_returns_12_recipes
+    request = get "/recipes/complexSearch"
+    response = JSON.parse(request.body, symbolize_names: true)
+    assert_equal 12, response[:results].size
+  end
+
+  def test_it_returns_a_specific_recipe
+    request = get "/recipe/1"
+    response = JSON.parse(request.body, symbolize_names: true)
+    assert_equal 1, response[:id]
+    assert response[:title]
+    assert response[:readyInMinutes]
+    assert response[:extendedIngredients]
+    assert response[:analyzedInstructions]
+  end
+
+  def test_it_returns_multiple_recipes_by_id
+    request = get "/recipes?ids=1,2,3"
+    response = JSON.parse(request.body, symbolize_names: true)
+    assert_equal 3, response.size
+
+    ids = response.reduce([]) do |acc, recipe|
+      acc << recipe[:id]
+    end
+    assert_equal [1,2,3], ids
+  end
+end

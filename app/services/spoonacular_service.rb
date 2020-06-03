@@ -1,3 +1,7 @@
+require 'dotenv'
+require 'faraday'
+Dotenv.load('var.env')
+
 class SpoonacularService
   def complex_search(search_params)
     params = complex_search_params(search_params)
@@ -5,24 +9,22 @@ class SpoonacularService
   end
 
   def search_by_id(recipe_id)
-    params = { apiKey: ENV['SPOONACULAR_KEY'], includeNutrition: true }
+    params = { apiKey: ENV['SPOONACULAR_KEY'],
+               includeNutrition: true }
     get_json("/recipes/#{recipe_id}/information", params)
   end
 
   def search_by_ids(recipe_ids)
-    params = {
-      apiKey: ENV['SPOONACULAR_KEY'],
-      ids: recipe_ids,
-      includeNutrition: true
-    }
+    params = { apiKey: ENV['SPOONACULAR_KEY'],
+               ids: recipe_ids,
+               includeNutrition: true }
     get_json('/recipes/informationBulk', params)
   end
 
   private
 
   def complex_search_params(search_params)
-    {
-      apiKey: ENV['SPOONACULAR_KEY'],
+    { apiKey: ENV['SPOONACULAR_KEY'],
       includeIngredients: search_params[:ingredients],
       maxReadyTime: search_params[:time],
       diet: search_params[:diet], type: search_params[:type],
