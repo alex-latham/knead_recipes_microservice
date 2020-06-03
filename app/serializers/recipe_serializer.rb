@@ -1,6 +1,5 @@
 class RecipeSerializer
   def self.call(recipe)
-    check_instructions(recipe)
     { title: recipe[:title],
       id: recipe[:id],
       image: recipe[:image],
@@ -22,8 +21,8 @@ class RecipeSerializer
   end
 
   def self.format_nutrition(nutrients)
-    nutrients.reduce([]) do |acc, nutrient|
-      acc << { nutrient[:title] => nutrient[:amount] }
+    nutrients.each_with_object({}) do |nutrient, acc|
+      acc[nutrient[:title].downcase] = nutrient[:amount]
     end
   end
 
@@ -31,12 +30,6 @@ class RecipeSerializer
     return nil if instructions.nil?
     instructions[0][:steps].reduce([]) do |acc, step|
       acc << { step[:number] => step[:step] }
-    end
-  end
-
-  def self.check_instructions(recipe)
-    if recipe[:analyzedInstructions] == []
-      recipe[:analyzedInstructions] = nil
     end
   end
 end
