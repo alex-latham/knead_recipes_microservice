@@ -1,3 +1,7 @@
+require 'dotenv'
+require 'faraday'
+Dotenv.load('var.env')
+
 class SpoonacularService
   def complex_search(search_params)
     params = complex_search_params(search_params)
