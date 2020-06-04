@@ -1,18 +1,30 @@
 require './app/services/spoonacular_service'
+require './app/serializers/recipe_serializer'
 require 'sinatra'
 
 class RecipesController < Sinatra::Base
 
   get '/recipes/complexSearch' do
-    SpoonacularService.new.complex_search(params).to_json
-    # RecipeSerializer.new(recipes)
+    recipes = SpoonacularService.new.complex_search(params)
+
+    return nil if recipes[:results] == [] or recipes.nil?
+
+    recipes = recipes[:results].map { |recipe| RecipeSerializer.call(recipe) }.to_json
   end
 
   get "/recipe/:recipe_id" do
-    SpoonacularService.new.search_by_id(params[:recipe_id]).to_json
+    recipe = SpoonacularService.new.search_by_id(params[:recipe_id])
+
+    return nil if recipe.nil?
+
+    RecipeSerializer.call(recipe).to_json
   end
 
   get '/recipes' do
-    SpoonacularService.new.search_by_ids(params[:ids]).to_json
+    recipes = SpoonacularService.new.search_by_ids(params[:ids])
+
+    return nil if recipes.nil?
+
+    recipes.map { |recipe| RecipeSerializer.call(recipe) }.to_json
   end
 end
