@@ -8,7 +8,7 @@ class RecipeSerializer
       ingredients: {
         ingredients: format_ingredients(recipe[:extendedIngredients]),
         missing_ingredients: recipe[:missedIngredientCount] },
-      instructions: format_instructions(recipe[:analyzedInstructions]),
+      instructions: format_instructions(recipe[:analyzedInstructions][0]),
       summary: recipe[:summary],
       diets: recipe[:diets] }
   end
@@ -27,8 +27,8 @@ class RecipeSerializer
   end
 
   def self.format_instructions(instructions)
-    return nil if instructions.nil?
-    instructions[0][:steps].reduce([]) do |acc, step|
+    return if instructions.nil?
+    instructions[:steps].reduce([]) do |acc, step|
       acc << { step[:number] => step[:step] }
     end
   end

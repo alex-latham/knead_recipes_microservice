@@ -7,6 +7,7 @@ class RecipesController < Sinatra::Base
   get '/recipes/complexSearch' do
     recipes = SpoonacularService.new.complex_search(params)
 
+    return nil if recipes[:results] == []
     return nil if recipes.nil?
 
     recipes = recipes[:results].map { |recipe| RecipeSerializer.call(recipe) }.to_json

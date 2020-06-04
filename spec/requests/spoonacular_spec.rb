@@ -9,14 +9,12 @@ class RecipesControllerTest < Minitest::Test
   end
 
   def test_it_returns_12_recipes
-    skip
     request = get "/recipes/complexSearch"
     response = JSON.parse(request.body, symbolize_names: true)
     assert_equal 12, response.size
   end
 
   def test_it_returns_a_specific_recipe
-    skip
     request = get "/recipe/1"
     response = JSON.parse(request.body, symbolize_names: true)
     assert_equal 1, response[:id]
@@ -27,7 +25,6 @@ class RecipesControllerTest < Minitest::Test
   end
 
   def test_it_returns_multiple_recipes_by_id
-    skip
     request = get "/recipes?ids=1,2,5"
     response = JSON.parse(request.body, symbolize_names: true)
     assert_equal 3, response.size
@@ -35,9 +32,5 @@ class RecipesControllerTest < Minitest::Test
       acc << recipe[:id]
     end
     assert_equal [1,2,5], ids
-  end
-
-  def test_it_returns_nil_if_invalid_recipe
-    request = get "/recipe/12312312313"
   end
 end
