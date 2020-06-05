@@ -1,4 +1,4 @@
-![Knead Recipies Logo](https://i.imgur.com/QFrJuy4.png)
+![Knead Recipes Logo](https://i.imgur.com/QFrJuy4.png)
 
  
 <p align="center">
@@ -41,7 +41,7 @@ $ bundle exec shotgun
 http://localhost:9393/recipe?id=1
 ```
 
-- To return information about multiple recipes, providing the IDs without spaces and separated by commas
+- To return information about multiple recipes, provide the IDs without spaces and separated by commas
 ```
 http://localhost:9393/recipes?ids=1,2,3
 ```
