@@ -57,3 +57,17 @@ http://localhost:9393/recipes?ids=1,2,3
 ```
 http://localhost:9393/recipes/compleSearch?includeIngredients=beef&time=120&type=main+course
 ```
+
+# Developers
+<p>
+  <a href="https://github.com/fredrondina96">Fred Rondina</a>
+ </p>
+ <p>
+  <a href="https://github.com/alex-latham">Alex Latham</a>
+ </p>
+ <p>
+  <a href="https://github.com/mikez321">Mike Hernandez</a>
+ </p>
+ <p>
+  <a href="https://github.com/DavidTTran">David Tran</a>
+ </p>
